@@ -1,8 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {register as registerAction} from '../slices/authSlice'
 const Register = () => {
   
   const validationSchema = yup.object({
@@ -38,9 +40,14 @@ const Register = () => {
     resolver: yupResolver(validationSchema),
     mode:"onTouched",
   });
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const onSubmit = values => {
-
+    dispatch(registerAction(values)).then(()=>{
+      // Sau khi action thanh cong 
+      // redirect ve login page
+      navigate('/login')
+    })
   }
   return (
     <div>
