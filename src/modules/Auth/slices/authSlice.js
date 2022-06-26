@@ -4,7 +4,8 @@ import authApi from '../../apis/auth';
 
 
 const initialState = {
-    user: null,
+    // Kiểm tra nếu localStorage có thông tin user, gán lại cho state user nếu không có thì mặc định là null 
+    user: JSON.parse(localStorage.getItem('user')) || null,
     isLoading: false,
     error: null,
 };
@@ -19,7 +20,11 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
     "auth/login",
     async (values) => {
-        return await authApi.register(values)
+        const data = await authApi.login(values);
+        // luu thong tin dang nhap vao local storage de khong can phai dang nhap lai neu refresh
+        localStorage.setItem('user',JSON.stringify(data));
+        return data
+
     }
 
 );
@@ -33,7 +38,7 @@ const authSlice = createSlice({
         [login.fulfilled]:(state,action) => {
             return {...state,isLoading: false, user: action.payload}
         },
-        [login.fulfilled]:(state,action) => {
+        [login.rejected]:(state,action) => {
             return {...state,isLoading: false, error: action.error.message}
         },
         [register.pending]:(state) => {
