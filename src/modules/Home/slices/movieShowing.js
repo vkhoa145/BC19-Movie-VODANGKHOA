@@ -14,6 +14,7 @@ export const getMovieShowing = createAsyncThunk(
         
     }
 );
+
 const movieSlice = createSlice({
     name: "home/movieShowing",
     initialState,

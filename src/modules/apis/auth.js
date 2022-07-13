@@ -11,6 +11,9 @@ const authApi = {
             maNhom: "GP01"
         })
     },
+    userDetail : () => {
+        return axiosClient.post('QuanLyNguoiDung/ThongTinTaiKhoan');
+    },
 
 
 };

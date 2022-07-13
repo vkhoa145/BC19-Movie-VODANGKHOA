@@ -8,6 +8,7 @@ const initialState = {
     user: JSON.parse(localStorage.getItem('user')) || null,
     isLoading: false,
     error: null,
+    userInfo: {},
 };
 
 export const register = createAsyncThunk(
@@ -28,6 +29,12 @@ export const login = createAsyncThunk(
     }
 
 );
+export const userDetail = createAsyncThunk(
+    "auth/userDetail",
+    async () => {
+        return await authApi.userDetail();
+    }
+)
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -48,6 +55,15 @@ const authSlice = createSlice({
             return {...state,isLoading: false}
         },
         [register.rejected]:(state,action) => {
+            return {...state,isLoading: false, error: action.error.message}
+        },
+        [userDetail.pending]:(state) => {
+            return {...state,isLoading: true}
+        },
+        [userDetail.fulfilled]:(state,action) => {
+            return {...state,isLoading: false, userInfo: action.payload}
+        },
+        [userDetail.rejected]:(state,action) => {
             return {...state,isLoading: false, error: action.error.message}
         },
     }

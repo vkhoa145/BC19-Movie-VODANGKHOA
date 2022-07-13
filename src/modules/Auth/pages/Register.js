@@ -42,17 +42,18 @@ const Register = () => {
   });
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const onSubmit = values => {
+  const onRegister = values => {
     dispatch(registerAction(values)).then(()=>{
       // Sau khi action thanh cong 
       // redirect ve login page
+      
       navigate('/login')
     })
   }
   return (
     <div>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onRegister)}>
         <div>
           <label>Tài Khoản</label>
           <input type="text" {...register('taiKhoan')} />

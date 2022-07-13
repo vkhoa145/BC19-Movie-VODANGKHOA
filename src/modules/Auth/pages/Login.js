@@ -26,6 +26,13 @@ const Login = () => {
     console.log(error)
   };
   if  (user) {
+    // nếu người dùng là quản trị thì return về trang admin 
+    if (user.maLoaiNguoiDung === 'QuanTri') {
+      return <Navigate to="/admin/movies"/>
+    }
+
+
+
     // Redirect user ve trang home
     return <Navigate to="/"/>
   };

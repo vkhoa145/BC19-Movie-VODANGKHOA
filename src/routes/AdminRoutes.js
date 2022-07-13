@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const AdminRoute = ({children}) => {
         // => Redirect về page not found 
         return <Navigate to="/not-found"/>
 
-    }
+    };
   return children;
     
   

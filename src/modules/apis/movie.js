@@ -21,3 +21,13 @@ export const getMovieDetails = (movieId) => {
 export const getBanner = () => {
     return axiosClient.get('QuanLyPhim/LayDanhSachBanner')
 };
+
+
+export const deleteMovie = (movieId) => {
+    return axiosClient.get('QuanLyPhim/XoaPhim',{
+        params: {
+            Authorization: "",
+        }
+    })
+};
+

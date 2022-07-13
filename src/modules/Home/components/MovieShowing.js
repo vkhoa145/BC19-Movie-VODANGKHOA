@@ -1,23 +1,32 @@
 import React, { useEffect } from 'react'
-import {useSelector,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getMovieShowing } from '../slices/movieShowing';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import MultipleRows from '../../../components/ReactSlick';
+
 const MovieShowing = () => {
-  const {data,isLoading, error} = useSelector(state => state.movie);
+  const { data, isLoading, error } = useSelector(state => state.movie);
   const dispatch = useDispatch();
-  const navgate = useNavigate()
-  useEffect(()=>{
+  const navigate = useNavigate()
+  useEffect(() => {
     dispatch(getMovieShowing())
-  },[]);
+  }, []);
   console.log(data)
   return (
-    <div>
-      {data.map(movie => {
+    <div className="container d-flex justify-content-center flex-wrap">
+      {data?.map((movie, index) => {
         return (
-          <div className="d-flex my-4">
-            <p>{movie.tenPhim}</p>
-            <button className="mx-4" onClick={()=>navgate(`/movies/${movie.maPhim}`)}>Detail</button>
+          <div key={index} className="card rounded mx-2.5 my-5" style={{ width: '18rem' }}>
+            {/* <img className="card-img-top" src={movie.hinhAnh} alt={movie.tenPhim} />
+            <div className="card-body">
+              <h5 className="card-title movie-title">{movie.tenPhim}</h5>
+              <p className="card-text">{movie.moTa}</p>
+              <a href="#" onClick={() => navigate(`/movies/${movie.maPhim}`)} className="btn btn-primary">Details</a>
+
+            </div> */}
+            <MultipleRows movie={movie}/>
           </div>
+
         )
       })}
     </div>
@@ -25,3 +34,5 @@ const MovieShowing = () => {
 }
 
 export default MovieShowing
+
+ 

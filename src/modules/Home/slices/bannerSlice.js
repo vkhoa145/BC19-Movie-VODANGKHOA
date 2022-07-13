@@ -14,7 +14,7 @@ export const getBanner = createAsyncThunk(
         return await movieAPI.getBanner();
         
     }
-)
+);
 
 const bannerSlice  = createSlice({
     name: 'home/banner',

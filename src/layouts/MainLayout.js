@@ -1,16 +1,15 @@
+
 import React from 'react'
 import {Outlet} from 'react-router-dom'
+import Header from './Header';
+import Footer from './Footer'
 const MainLayout = () => {
   return (
     <div>
-        <div>
-            <h1>Header</h1>
-        </div>
+        <Header/>
         {/* phần body của layout sẽ được các routes đặt ở đây */}
         <Outlet/>
-        <div>
-            <h1>Footer</h1>
-        </div>
+        <Footer/>
     </div>
   )
 }
