@@ -22,7 +22,7 @@ const MovieShowing = () => {
               <h5 className="card-title movie-title">{movie.tenPhim}</h5>
               <p className="card-text">{movie.moTa}</p>
               <a href="#" onClick={() => navigate(`/movies/${movie.maPhim}`)} className="btn btn-primary">Details</a>
-
+            <p>hello</p>
             </div> */}
             <MultipleRows movie={movie}/>
           </div>
