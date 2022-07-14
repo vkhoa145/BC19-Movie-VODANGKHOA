@@ -1,5 +1,5 @@
 import React from 'react'
-import MultipleRows from '../../../components/ReactSlick';
+import MultipleRows from '../../../components/Slick/ReactSlick'
 import Banner from '../components/Banner';
 import Cinema from '../components/Cinema';
 import MovieShowing from '../components/MovieShowing';

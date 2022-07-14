@@ -11,7 +11,15 @@ export const getCinemaInfo = (cumRap) => {
             maHeThongRap: cumRap,
         }
     })
-}
+};
+export const getCinemaSchedule = () => {
+    return axiosclient.get('QuanLyRap/LayThongTinLichChieuHeThongRap',{
+        params: {
+            maNhom: 'GP01',
+        }
+    })
+};
+
 
 export const getScheduleMovie = (maPhim) => {
     return axiosclient.get('QuanLyRap/LayThongTinLichChieuPhim',{

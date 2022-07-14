@@ -1,28 +1,39 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import Film from '../../modules/Home/components/Film'
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "red" }}
+      onClick={onClick}
+    />
+  );
+}
 
-// function SampleNextArrow(props) {
-//   const {className,style,onClick} = props;
-//   return (
-//     <div className={`${className} ${styleSlick['slick-prev']}`} style={{...style,display:"block"}} onClick={onClick}></div>
-//   );
-// };
-// function SamplePrevArrow(props) {
-//   const {className,style,onClick} = props;
-//   return (
-//     <div className={`${className} ${styleSlick['slick-prev']}`} style={{...style,display:"block",left:"-50px"}} onClick={onClick}></div>
-//   );
-// };
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "green" }}
+      onClick={onClick}
+    />
+  );
+}
+
 export default class MultipleRows extends Component {
-   
+  
   // renderFilm =() => {
-  //   return this.props.arrFilm.map((item,index)=>{
-  //     <div className={`${styleSlick['width-item']}`} key={index}>
+  //   return this.props.Film.map((item,index)=>{
+  //     <div className={`${style['width-item']}`} key={index}>
   //       <Film/>
   //     </div>
   //   })
   // };
   render() {
+
     const settings = {
       className: "center variable-width",
       centerMode: true,
@@ -33,8 +44,8 @@ export default class MultipleRows extends Component {
       rows: 2,
       slidesPerRow: 2,
       variableWidth: true,
-      // nextArrow: <SampleNextArrow/>,
-      // prevArrow: <SamplePrevArrow/>
+      nextArrow: <SampleNextArrow/>,
+      prevArrow: <SamplePrevArrow/>
       
     };
     return (

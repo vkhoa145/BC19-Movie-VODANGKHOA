@@ -1,6 +1,13 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCinema } from '../modules/Home/slices/cinemaSlice'
 const Footer = () => {
+  const { data, isLoading, error } = useSelector(state => state.cinema);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCinema())
+  }, [])
+  console.log(data)
   return (
 
     <footer className="text-center text-lg-start bg-light text-muted">
@@ -43,37 +50,16 @@ const Footer = () => {
             </div>
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                Products
+                Counterparties
               </h6>
-              <p>
-                <a href="#!" className="text-reset">Angular</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">React</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Vue</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Laravel</a>
-              </p>
-            </div>
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
-                Useful links
-              </h6>
-              <p>
-                <a href="#!" className="text-reset">Pricing</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Settings</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Orders</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">Help</a>
-              </p>
+              {data?.map((rap, index) => {
+                return (
+                  <p key={index}>
+                    <a href="#!" className="text-reset">{rap.tenHeThongRap}</a>
+                  </p>
+                )
+              })}
+
             </div>
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">

@@ -5,6 +5,7 @@ const initialState = {
     data: [],
     isLoading: false,
     error: null,
+    heThongRapChieu: [],
 };
 
 export const getCinema = createAsyncThunk(
@@ -14,6 +15,12 @@ export const getCinema = createAsyncThunk(
     }
 );
 
+export const getCinemaSchedule = createAsyncThunk(
+    "home/cinema/getCinemaSchedule",
+    async () => {
+        return await cinemaAPI.getCinemaSchedule();
+    }
+);
 
 const cinemaSlice = createSlice({
     name:'home/cinema',
@@ -26,6 +33,15 @@ const cinemaSlice = createSlice({
             return {...state,isLoading: false,data:action.payload}
         },
         [getCinema.rejected]:(state,action) => {
+            return {...state,isLoading: false,error:action.message}
+        },
+        [getCinemaSchedule.pending]:(state) => {
+            return {...state,isLoading: true}
+        },
+        [getCinemaSchedule.fulfilled]:(state,action) => {
+            return {...state,isLoading: false,heThongRapChieu:action.payload}
+        },
+        [getCinemaSchedule.rejected]:(state,action) => {
             return {...state,isLoading: false,error:action.message}
         },
     }

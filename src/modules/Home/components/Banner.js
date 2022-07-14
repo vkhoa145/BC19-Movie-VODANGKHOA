@@ -8,7 +8,7 @@ const Banner = () => {
   useEffect(() => {
     dispatch(getBanner())
   }, []);
-  console.log(data)
+  
   const contentStyle = {
     height: '300px',
     color: '#fff',
@@ -18,7 +18,7 @@ const Banner = () => {
     
   };
   return (
-    <div style>
+    <div >
       <Carousel autoplay>
       {data.map((banner,index)=>{
         return (
