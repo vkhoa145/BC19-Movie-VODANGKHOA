@@ -10,6 +10,7 @@ const initialState = {
     error: false,
     seat: [],
     checkoutTicket: new ThongTinDatVe(),
+    tabActive: 1,
 };
 
 export const getTicketDetail = createAsyncThunk(
@@ -32,6 +33,7 @@ export const postTicketCheckout = createAsyncThunk(
 
 
 
+
 const ticketSlice = createSlice({
     name:"ticket",
     initialState,
@@ -47,7 +49,11 @@ const ticketSlice = createSlice({
             }
             
             return {...state,seat:demo}
-        }
+        },
+        switchTab: (state) => {
+            
+            return {...state,tabActive: 2}
+        },
     },
     extraReducers: {
         [getTicketDetail.pending]:(state) => {
@@ -72,7 +78,7 @@ const ticketSlice = createSlice({
 });
 
 
-export const {selectSeat} = ticketSlice.actions;
+export const {selectSeat,switchTab} = ticketSlice.actions;
 
 
 export default ticketSlice.reducer;

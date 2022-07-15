@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 
 import { CloseOutlined, UserOutlined } from '@ant-design/icons'
 import './Checkout.css';
-import { getTicketDetail, postTicketCheckout, selectSeat } from '../slices/ticketSlice';
+import { getTicketDetail, postTicketCheckout, selectSeat, switchTab } from '../slices/ticketSlice';
 import { userDetail } from '../../Auth/slices/authSlice'
 
 import { Tabs } from 'antd';
@@ -12,11 +12,11 @@ import moment from 'moment';
 import Loading from '../../../Loading/Loading';
 const CheckOut = () => {
   const { user } = useSelector(state => state.auth);
-  const { data, seat, checkoutTicket, isLoading } = useSelector(state => state.ticket);
+  const { data, seat, checkoutTicket, isLoading} = useSelector(state => state.ticket);
   console.log(seat)
   const { maLichChieu } = useParams()
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
     dispatch(getTicketDetail(maLichChieu))
 
@@ -154,9 +154,11 @@ const onChange = (key) => {
   console.log(key);
 };
 export default function (props) {
+  const {tabActive} = useSelector(state => state.ticket);
+  console.log('tabs',tabActive)
   return (
     <div>
-      <Tabs defaultActiveKey="1" onChange={onChange}>
+      <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={onChange}>
         <TabPane tab="Chon ghe" key="1">
           <CheckOut {...props} />
         </TabPane>
